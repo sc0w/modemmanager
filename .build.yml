@@ -18,6 +18,7 @@ requires:
     - gcr
     - gir1.2-gcr-3
     - gtk-doc-tools
+    - gobject-introspection
     - libgcr-3-dev
     - libgcr-base-3-1
     - libgcr-ui-3-1
