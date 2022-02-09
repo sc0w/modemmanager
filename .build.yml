@@ -13,6 +13,7 @@ requires:
     - cmake
     - cppcheck
     - debhelper
+    - expect #required for unbuffer
     - git
     - gcr
     - gir1.2-gcr-3
