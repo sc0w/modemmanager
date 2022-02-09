@@ -67,6 +67,7 @@ requires:
     - libupower-glib3
     - upower
     - wx3.0-i18n
+    - xsltproc
     - zlib1g-dev
     - libgudev-1.0-dev
     - libcallaudio-dev
