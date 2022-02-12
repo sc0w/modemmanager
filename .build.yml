@@ -101,6 +101,7 @@ build_scripts:
   - cppcheck --enable=warning,style,performance,portability,information,missingInclude . 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
 
   - mkdir tmpinstall
+  - cd tmpinstall
   - git clone --depth 1 https://gitlab.freedesktop.org/mobile-broadband/libmbim.git
   - cd libmbim
   - meson setup build --prefix=/usr -Dgtk_doc=false -Dbash_completion=false -Dintrospection=false
