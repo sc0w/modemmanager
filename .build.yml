@@ -97,6 +97,28 @@ build_scripts:
   - mkdir html-report
   - cppcheck --enable=warning,style,performance,portability,information,missingInclude . 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
 
+  - mkdir tmpinstall
+  - git clone --depth 1 https://gitlab.freedesktop.org/mobile-broadband/libmbim.git
+  - cd libmbim
+  - meson setup build --prefix=/usr -Dgtk_doc=false -Dbash_completion=false
+  - ninja -C build
+  - ninja -C build install
+  - cd ..
+  - git clone --depth 1 https://gitlab.freedesktop.org/mobile-broadband/libqrtr-glib.git
+  - cd libqrtr-glib
+  - meson setup build --prefix=/usr -Dgtk_doc=false
+  - ninja -C build
+  - ninja -C build install
+  - cd ..
+  - git clone --depth 1 https://gitlab.freedesktop.org/mobile-broadband/libqmi.git
+  - cd libqmi
+  - meson setup build --prefix=/usr -Dgtk_doc=false -Dbash_completion=false -Dcollection=basic
+  - ninja -C build
+  - ninja -C build install
+  - cd ..
+  - cd ..
+  - rm -rf tempinstall
+
 #  - scan-build $CHECKERS --html-title="$TITLESCANBUILD" --keep-cc -o html-report meson . _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
 #  - scan-build $CHECKERS --html-title="$TITLESCANBUILD" --keep-cc -o html-report ninja -C _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
   - ./make-scanbuild '--prefix=/usr --enable-gtk-doc --disable-introspection --with-polkit=strict --with-suspend-resume=systemd --with-systemdsystemunitdir=/lib/systemd/system'
