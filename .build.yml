@@ -77,6 +77,8 @@ requires:
     - libqmi-utils
     - libgudev-1.0-dev
     - libcallaudio-dev
+    - libgirepository1.0-dev
+    - valac
 
 variables:
 #  - CPPFLAGS="-Wall -Woverloaded-virtual -Wextra -Wshadow -Wformat-nonliteral -Werror=format-security -Wpointer-arith -Wcast-align -Wmissing-declarations -Wredundant-decls"
@@ -100,19 +102,19 @@ build_scripts:
   - mkdir tmpinstall
   - git clone --depth 1 https://gitlab.freedesktop.org/mobile-broadband/libmbim.git
   - cd libmbim
-  - meson setup build --prefix=/usr -Dgtk_doc=false -Dbash_completion=false
+  - meson setup build --prefix=/usr -Dgtk_doc=false -Dbash_completion=false -Dintrospection=false
   - ninja -C build
   - ninja -C build install
   - cd ..
   - git clone --depth 1 https://gitlab.freedesktop.org/mobile-broadband/libqrtr-glib.git
   - cd libqrtr-glib
-  - meson setup build --prefix=/usr -Dgtk_doc=false
+  - meson setup build --prefix=/usr -Dgtk_doc=false -Dintrospection=false
   - ninja -C build
   - ninja -C build install
   - cd ..
   - git clone --depth 1 https://gitlab.freedesktop.org/mobile-broadband/libqmi.git
   - cd libqmi
-  - meson setup build --prefix=/usr -Dgtk_doc=false -Dbash_completion=false -Dcollection=basic
+  - meson setup build --prefix=/usr -Dgtk_doc=false -Dbash_completion=false -Dcollection=basic -Dintrospection=false
   - ninja -C build
   - ninja -C build install
   - cd ..
