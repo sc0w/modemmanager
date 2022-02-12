@@ -125,7 +125,22 @@ build_scripts:
 
 #  - scan-build $CHECKERS --html-title="$TITLESCANBUILD" --keep-cc -o html-report meson . _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
 #  - scan-build $CHECKERS --html-title="$TITLESCANBUILD" --keep-cc -o html-report ninja -C _build 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
-  - ./make-scanbuild '--prefix=/usr --enable-gtk-doc --disable-introspection --with-polkit=strict --with-suspend-resume=systemd --with-systemdsystemunitdir=/lib/systemd/system'
+  - export TITLESCANBUILD="${REPO_NAME} (clang-tools `dpkg -s clang-tools|grep -i version|cut -d " " -f 2`) - scan-build results"
+  - NOCONFIGURE=1 ./autogen.sh
+  - scan-build $CHECKERS ./configure --prefix=/usr --enable-gtk-doc --disable-introspection --with-polkit=strict --with-suspend-resume=systemd --with-systemdsystemunitdir=/lib/systemd/system
+
+  - if [ $CPU_COUNT -gt 1 ]; then
+  -     unbuffer scan-build $CHECKERS --html-title="$TITLESCANBUILD" --keep-cc -o html-report make -j $(( $CPU_COUNT + 1 )) 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
+  - else
+  -     unbuffer scan-build $CHECKERS --html-title="$TITLESCANBUILD" --keep-cc -o html-report make 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
+  - fi
+
+  - unbuffer make check 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
+  - make install
+
+
+
+  #- ./make-scanbuild '--prefix=/usr --enable-gtk-doc --disable-introspection --with-polkit=strict --with-suspend-resume=systemd --with-systemdsystemunitdir=/lib/systemd/system'
   - echo "Total time $(($SECONDS / 60)) minutes and $(($SECONDS % 60))" 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
   - echo Errors detected in the build `cat ./html-report/output_${TRAVIS_COMMIT} | grep ' error:' | grep -v "\[" | wc -l` 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
   - echo Warnings detected in the logs `cat ./html-report/output_${TRAVIS_COMMIT} | grep -i warning | wc -l` 2>&1 | tee -a ./html-report/output_${TRAVIS_COMMIT}
