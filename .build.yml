@@ -72,6 +72,7 @@ requires:
     - wx3.0-i18n
     - xsltproc
     - zlib1g-dev
+    - libmbim-glib-dev
     - libqmi-glib-dev
     - libqmi-utils
     - libgudev-1.0-dev
