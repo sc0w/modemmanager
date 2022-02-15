@@ -1,0 +1,147 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cppcheck - HTML report - modemmanager (cppcheck 2.6-2)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+    <script>
+      function getStyle(el, styleProp) {
+        var y;
+
+        if (el.currentStyle) {
+          y = el.currentStyle[styleProp];
+        } else if (window.getComputedStyle) {
+          y = document.defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+        }
+
+        return y;
+      }
+
+      function toggle() {
+        var el = this.expandable_content;
+        var mark = this.expandable_marker;
+
+        if (el.style.display === "block") {
+          el.style.display = "none";
+          mark.textContent = "[+]";
+        } else {
+          el.style.display = "block";
+          mark.textContent = "[-]";
+        }
+      }
+
+      function initExpandables() {
+        var elements = document.querySelectorAll(".expandable");
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          var el = elements[i];
+          var clickable = el.querySelector("span");
+          var marker = clickable.querySelector(".marker");
+          var content = el.querySelector(".content");
+          var width = clickable.clientWidth - parseInt(getStyle(content, "padding-left")) - parseInt(getStyle(content, "padding-right"));
+          content.style.width = width + "px";
+          clickable.expandable_content = content;
+          clickable.expandable_marker = marker;
+          clickable.addEventListener("click", toggle);
+        }
+      }
+
+      function toggleDisplay(id) {
+        var elements = document.querySelectorAll("." + id);
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          elements[i].classList.toggle("d-none");
+        }
+      }
+
+      function toggleAll() {
+        var elements = document.querySelectorAll("input");
+
+        // starting from 1 since 0 is the "toggle all" input
+        for (var i = 1, len = elements.length; i < len; i++) {
+          var el = elements[i];
+
+          if (el.checked) {
+            el.checked = false;
+          } else {
+            el.checked = true;
+          }
+
+          toggleDisplay(el.id);
+        }
+      }
+      window.addEventListener("load", initExpandables);
+    </script>
+  </head>
+  <body>
+    <div id="header" class="header">
+      <h1>Cppcheck report - modemmanager (cppcheck 2.6-2): Statistics</h1>
+    </div>
+    <div class="wrapper">
+      <div id="menu_index">
+       <p id="filename"><a href="index.html">Back to summary</a> </p>
+
+    </div>
+    <div id="content_index">
+<p>Top 10 files for error severity, total findings: 91<br>
+&#160;&#160;&#160;3&#160;<a href="52.html">  plugins/icera/mm-broadband-modem-icera.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="169.html">  tools/tests/test-stub.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="167.html">  src/tests/test-sms-part-cdma.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="166.html">  src/tests/test-sms-part-3gpp.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="165.html">  src/tests/test-qcdm-serial-port.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="164.html">  src/tests/test-modem-helpers.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="163.html">  src/tests/test-modem-helpers-qmi.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="162.html">  src/tests/test-kernel-device-helpers.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="161.html">  src/tests/test-charsets.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="160.html">  src/tests/test-at-serial-port.c</a><br>
+</p>
+<p>Top 10 files for warning severity, total findings: 5<br>
+&#160;&#160;&#160;2&#160;<a href="31.html">  libqcdm/src/errors.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="66.html">  plugins/pantech/mm-broadband-modem-pantech.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="59.html">  plugins/mbm/mm-modem-helpers-mbm.c</a><br>
+&#160;&#160;&#160;1&#160;<a href="30.html">  libqcdm/src/commands.c</a><br>
+</p>
+<p>Top 10 files for portability severity, total findings: 1<br>
+&#160;&#160;&#160;1&#160;<a href="59.html">  plugins/mbm/mm-modem-helpers-mbm.c</a><br>
+</p>
+<p>Top 10 files for style severity, total findings: 48<br>
+&#160;&#160;&#160;16&#160;<a href="30.html">  libqcdm/src/commands.c</a><br>
+&#160;&#160;&#160;5&#160;&#160;<a href="9.html">  libmm-glib/mm-common-helpers.c</a><br>
+&#160;&#160;&#160;3&#160;&#160;<a href="52.html">  plugins/icera/mm-broadband-modem-icera.c</a><br>
+&#160;&#160;&#160;3&#160;&#160;<a href="33.html">  libqcdm/tests/modepref.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="132.html">  src/mm-modem-helpers-mbim.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="71.html">  plugins/quectel/mm-shared-quectel.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="64.html">  plugins/option/mm-broadband-modem-option.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="58.html">  plugins/mbm/mm-broadband-modem-mbm.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="34.html">  libqcdm/tests/reset.c</a><br>
+&#160;&#160;&#160;2&#160;&#160;<a href="32.html">  libqcdm/tests/ipv6pref.c</a><br>
+</p>
+<p>Top 10 files for information severity, total findings: 1973<br>
+&#160;&#160;&#160;315&#160;<a href="110.html">  src/mm-broadband-modem.c</a><br>
+&#160;&#160;&#160;208&#160;<a href="109.html">  src/mm-broadband-modem-qmi.c</a><br>
+&#160;&#160;&#160;136&#160;<a href="158.html">  src/mm-sms-part-cdma.c</a><br>
+&#160;&#160;&#160;126&#160;<a href="108.html">  src/mm-broadband-modem-mbim.c</a><br>
+&#160;&#160;&#160;87&#160;&#160;<a href="131.html">  src/mm-iface-modem.c</a><br>
+&#160;&#160;&#160;69&#160;&#160;<a href="151.html">  src/mm-shared-qmi.c</a><br>
+&#160;&#160;&#160;67&#160;&#160;<a href="136.html">  src/mm-plugin-manager.c</a><br>
+&#160;&#160;&#160;55&#160;&#160;<a href="106.html">  src/mm-bearer-qmi.c</a><br>
+&#160;&#160;&#160;50&#160;&#160;<a href="120.html">  src/mm-iface-modem-3gpp.c</a><br>
+&#160;&#160;&#160;47&#160;&#160;<a href="143.html">  src/mm-port-qmi.c</a><br>
+</p>
+
+      </div> <!-- /.wrapper -->
+    </div>
+    <div id="footer" class="footer">
+      <p>
+        Cppcheck 2.6 - a tool for static C/C++ code analysis<br>
+        <br>
+        Internet: <a href="https://cppcheck.sourceforge.io">https://cppcheck.sourceforge.io</a><br>
+        IRC: <a href="irc://irc.freenode.net/cppcheck">irc://irc.freenode.net/cppcheck</a><br>
+      </p>
+    </div>
+  </body>
+</html>

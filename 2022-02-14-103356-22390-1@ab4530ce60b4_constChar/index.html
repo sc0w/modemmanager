@@ -1,0 +1,691 @@
+<html>
+<head>
+<title>modemmanager (clang-tools 1:13.0-54) - scan-build results</title>
+<link type="text/css" rel="stylesheet" href="scanview.css"/>
+<script src="sorttable.js"></script>
+<script language='javascript' type="text/javascript">
+function SetDisplay(RowClass, DisplayVal)
+{
+  var Rows = document.getElementsByTagName("tr");
+  for ( var i = 0 ; i < Rows.length; ++i ) {
+    if (Rows[i].className == RowClass) {
+      Rows[i].style.display = DisplayVal;
+    }
+  }
+}
+
+function CopyCheckedStateToCheckButtons(SummaryCheckButton) {
+  var Inputs = document.getElementsByTagName("input");
+  for ( var i = 0 ; i < Inputs.length; ++i ) {
+    if (Inputs[i].type == "checkbox") {
+      if(Inputs[i] != SummaryCheckButton) {
+        Inputs[i].checked = SummaryCheckButton.checked;
+        Inputs[i].onclick();
+      }
+    }
+  }
+}
+
+function returnObjById( id ) {
+    if (document.getElementById)
+        var returnVar = document.getElementById(id);
+    else if (document.all)
+        var returnVar = document.all[id];
+    else if (document.layers)
+        var returnVar = document.layers[id];
+    return returnVar;
+}
+
+var NumUnchecked = 0;
+
+function ToggleDisplay(CheckButton, ClassName) {
+  if (CheckButton.checked) {
+    SetDisplay(ClassName, "");
+    if (--NumUnchecked == 0) {
+      returnObjById("AllBugsCheck").checked = true;
+    }
+  }
+  else {
+    SetDisplay(ClassName, "none");
+    NumUnchecked++;
+    returnObjById("AllBugsCheck").checked = false;
+  }
+}
+</script>
+<!-- SUMMARYENDHEAD -->
+</head>
+<body>
+<h1>modemmanager (clang-tools 1:13.0-54) - scan-build results</h1>
+
+<table>
+<tr><th>User:</th><td>root@5f6f009fbec8</td></tr>
+<tr><th>Working Directory:</th><td>/rootdir</td></tr>
+<tr><th>Command Line:</th><td>make -j 3</td></tr>
+<tr><th>Clang Version:</th><td>Debian clang version 13.0.1-+rc3-1~exp1+b1
+</td></tr>
+<tr><th>Date:</th><td>Mon Feb 14 10:33:56 2022</td></tr>
+</table>
+<h2>Bug Summary</h2><table>
+<thead><tr><td>Bug Type</td><td>Quantity</td><td class="sorttable_nosort">Display?</td></tr></thead>
+<tr style="font-weight:bold"><td class="SUMM_DESC">All Bugs</td><td class="Q">195</td><td><center><input type="checkbox" id="AllBugsCheck" onClick="CopyCheckedStateToCheckButtons(this);" checked/></center></td></tr>
+<tr><th>API</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Argument with 'nonnull' attribute passed null</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_api_argument_with_nonnull_attribute_passed_null');" checked/></center></td></tr>
+<tr><th>Logic error</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Branch condition evaluates to a garbage value</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_branch_condition_evaluates_to_a_garbage_value');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Cast from non-struct type to struct type</td><td class="Q">152</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_cast_from_non-struct_type_to_struct_type');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dereference of null pointer</td><td class="Q">12</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_dereference_of_null_pointer');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Out-of-bound access</td><td class="Q">5</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_out-of-bound_access');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Out-of-bound array access</td><td class="Q">2</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_out-of-bound_array_access');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Use of identical expressions</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_logic_error_use_of_identical_expressions');" checked/></center></td></tr>
+<tr><th>Memory error</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Memory leak</td><td class="Q">3</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_memory_error_memory_leak');" checked/></center></td></tr>
+<tr><th>Unix API</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">malloc() size overflow</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_unix_api_malloc_size_overflow');" checked/></center></td></tr>
+<tr><th>Unused code</th><th colspan=2></th></tr>
+<tr><td class="SUMM_DESC">Dead assignment</td><td class="Q">10</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_unused_code_dead_assignment');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Dead nested assignment</td><td class="Q">1</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_unused_code_dead_nested_assignment');" checked/></center></td></tr>
+<tr><td class="SUMM_DESC">Unreachable code</td><td class="Q">6</td><td><center><input type="checkbox" onClick="ToggleDisplay(this,'bt_unused_code_unreachable_code');" checked/></center></td></tr>
+</table>
+<h2>Reports</h2>
+
+<table class="sortable" style="table-layout:automatic">
+<thead><tr>
+  <td>Bug Group</td>
+  <td class="sorttable_sorted">Bug Type<span id="sorttable_sortfwdind">&nbsp;&#x25BE;</span></td>
+  <td>File</td>
+  <td>Function/Method</td>
+  <td class="Q">Line</td>
+  <td class="Q">Path Length</td>
+  <td class="sorttable_nosort"></td>
+  <!-- REPORTBUGCOL -->
+</tr></thead>
+<tbody>
+<tr class="bt_api_argument_with_nonnull_attribute_passed_null"><td class="DESC">API</td><td class="DESC">Argument with 'nonnull' attribute passed null</td><td>src/kerneldevice/mm-kernel-device-generic-rules.c</td><td class="DESC">load_rule_result</td><td class="Q">152</td><td class="Q">45</td><td><a href="report-b037ee.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b037ee.html" -->
+</tr>
+<tr class="bt_logic_error_branch_condition_evaluates_to_a_garbage_value"><td class="DESC">Logic error</td><td class="DESC">Branch condition evaluates to a garbage value</td><td>plugins/huawei/mm-broadband-modem-huawei.c</td><td class="DESC">huawei_rfswitch_check_ready</td><td class="Q">3651</td><td class="Q">8</td><td><a href="report-519028.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-519028.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-tdscdma.c</td><td class="DESC">mm_cell_info_tdscdma_new_from_dictionary</td><td class="Q">362</td><td class="Q">1</td><td><a href="report-011c54.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-011c54.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-nr5g.c</td><td class="DESC">mm_cell_info_nr5g_new_from_dictionary</td><td class="Q">391</td><td class="Q">1</td><td><a href="report-025464.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-025464.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_cdma_status_result</td><td class="Q">455</td><td class="Q">1</td><td><a href="report-02e5e8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-02e5e8.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_status_snapshot_new</td><td class="Q">560</td><td class="Q">1</td><td><a href="report-06cc7a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-06cc7a.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_hdr_subsys_state_info_new</td><td class="Q">1353</td><td class="Q">1</td><td><a href="report-0cf7d3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0cf7d3.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_hdr_rev_pref_result</td><td class="Q">1269</td><td class="Q">1</td><td><a href="report-0d10d0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0d10d0.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-cdma.c</td><td class="DESC">mm_cell_info_cdma_new_from_dictionary</td><td class="Q">268</td><td class="Q">1</td><td><a href="report-0da063.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0da063.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-cdma.c</td><td class="DESC">mm_cell_info_cdma_new_from_dictionary</td><td class="Q">265</td><td class="Q">1</td><td><a href="report-0da211.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0da211.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_status_snapshot_result</td><td class="Q">593</td><td class="Q">1</td><td><a href="report-10ed90.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-10ed90.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_ipv6_enabled_result</td><td class="Q">1172</td><td class="Q">1</td><td><a href="report-11552f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-11552f.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>plugins/huawei/tests/test-modem-helpers-huawei.c</td><td class="DESC">test_dhcp</td><td class="Q">190</td><td class="Q">1</td><td><a href="report-1554be.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1554be.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-modem.c</td><td class="DESC">mm_modem_peek_ports</td><td class="Q">946</td><td class="Q">1</td><td><a href="report-1593d3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1593d3.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_roam_pref_result</td><td class="Q">850</td><td class="Q">1</td><td><a href="report-17982a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-17982a.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_pilot_sets_new</td><td class="Q">642</td><td class="Q">1</td><td><a href="report-1a20f0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1a20f0.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_version_info_result</td><td class="Q">319</td><td class="Q">1</td><td><a href="report-1a4ba5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1a4ba5.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-lte.c</td><td class="DESC">mm_cell_info_lte_new_from_dictionary</td><td class="Q">361</td><td class="Q">1</td><td><a href="report-1d8e99.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1d8e99.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-cdma.c</td><td class="DESC">mm_cell_info_cdma_new_from_dictionary</td><td class="Q">267</td><td class="Q">1</td><td><a href="report-1dd747.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1dd747.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-sms-part-cdma.c</td><td class="DESC">mm_sms_part_cdma_new_from_binary_pdu</td><td class="Q">1117</td><td class="Q">1</td><td><a href="report-210be9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-210be9.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-port-probe.c</td><td class="DESC">serial_probe_at_result_processor</td><td class="Q">960</td><td class="Q">1</td><td><a href="report-218d58.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-218d58.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-lte.c</td><td class="DESC">mm_cell_info_lte_new_from_dictionary</td><td class="Q">364</td><td class="Q">1</td><td><a href="report-2250a3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2250a3.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">log_config_get_set_result</td><td class="Q">1845</td><td class="Q">1</td><td><a href="report-2378ee.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2378ee.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-modem-location.c</td><td class="DESC">mm_modem_location_inject_assistance_data_sync</td><td class="Q">472</td><td class="Q">1</td><td><a href="report-25209b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-25209b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-location-3gpp.c</td><td class="DESC">mm_location_3gpp_new_from_string_variant</td><td class="Q">377</td><td class="Q">1</td><td><a href="report-25d4f7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-25d4f7.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_cm_subsys_state_info_new</td><td class="Q">1281</td><td class="Q">1</td><td><a href="report-288747.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-288747.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_hdr_rev_pref_new</td><td class="Q">1194</td><td class="Q">1</td><td><a href="report-28f0f2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-28f0f2.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-lte.c</td><td class="DESC">mm_cell_info_lte_new_from_dictionary</td><td class="Q">362</td><td class="Q">1</td><td><a href="report-29d6c8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-29d6c8.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_gsm_subsys_state_info_result</td><td class="Q">2049</td><td class="Q">1</td><td><a href="report-2bfa3d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2bfa3d.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-gsm.c</td><td class="DESC">mm_cell_info_gsm_new_from_dictionary</td><td class="Q">332</td><td class="Q">1</td><td><a href="report-2dd7e8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2dd7e8.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/logs.c</td><td class="DESC">qcdm_log_item_evdo_pilot_sets_v2_get_pilot</td><td class="Q">176</td><td class="Q">1</td><td><a href="report-35d022.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-35d022.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_roam_pref_result</td><td class="Q">912</td><td class="Q">1</td><td><a href="report-36361e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-36361e.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_hdr_rev_pref_result</td><td class="Q">1221</td><td class="Q">1</td><td><a href="report-371921.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-371921.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_roam_pref_new</td><td class="Q">897</td><td class="Q">1</td><td><a href="report-3768a9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3768a9.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-nr5g.c</td><td class="DESC">mm_cell_info_nr5g_new_from_dictionary</td><td class="Q">396</td><td class="Q">1</td><td><a href="report-3dcf1e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3dcf1e.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-network-timezone.c</td><td class="DESC">mm_network_timezone_new_from_dictionary</td><td class="Q">222</td><td class="Q">1</td><td><a href="report-3e8f7f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3e8f7f.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-location-gps-nmea.c</td><td class="DESC">mm_location_gps_nmea_new_from_string_variant</td><td class="Q">230</td><td class="Q">1</td><td><a href="report-3f992f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3f992f.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">457</td><td class="Q">1</td><td><a href="report-449171.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-449171.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-nr5g.c</td><td class="DESC">mm_cell_info_nr5g_new_from_dictionary</td><td class="Q">400</td><td class="Q">1</td><td><a href="report-44bd93.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-44bd93.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">463</td><td class="Q">1</td><td><a href="report-44e451.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-44e451.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_wcdma_subsys_state_info_new</td><td class="Q">1986</td><td class="Q">1</td><td><a href="report-45e8f5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-45e8f5.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">461</td><td class="Q">1</td><td><a href="report-464a01.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-464a01.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_ipv6_enabled_new</td><td class="Q">1096</td><td class="Q">1</td><td><a href="report-4941ad.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4941ad.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_hybrid_pref_result</td><td class="Q">1024</td><td class="Q">1</td><td><a href="report-49d085.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-49d085.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-lte.c</td><td class="DESC">mm_cell_info_lte_new_from_dictionary</td><td class="Q">366</td><td class="Q">1</td><td><a href="report-4b06ab.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4b06ab.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-nr5g.c</td><td class="DESC">mm_cell_info_nr5g_new_from_dictionary</td><td class="Q">393</td><td class="Q">1</td><td><a href="report-4cc9e0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-4cc9e0.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nw_subsys_modem_snapshot_cdma_result</td><td class="Q">1597</td><td class="Q">1</td><td><a href="report-516b7b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-516b7b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nw_subsys_modem_snapshot_cdma_result</td><td class="Q">1598</td><td class="Q">1</td><td><a href="report-54f7f1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-54f7f1.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-lte.c</td><td class="DESC">mm_cell_info_lte_new_from_dictionary</td><td class="Q">360</td><td class="Q">1</td><td><a href="report-572eb2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-572eb2.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/logs.c</td><td class="DESC">check_log_item</td><td class="Q">35</td><td class="Q">1</td><td><a href="report-57353e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-57353e.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-modem.c</td><td class="DESC">mm_modem_peek_supported_modes</td><td class="Q">1282</td><td class="Q">1</td><td><a href="report-5740d8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-5740d8.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_ipv6_enabled_result</td><td class="Q">1112</td><td class="Q">1</td><td><a href="report-60e63a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-60e63a.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_hybrid_pref_result</td><td class="Q">1035</td><td class="Q">1</td><td><a href="report-6102c2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6102c2.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-nr5g.c</td><td class="DESC">mm_cell_info_nr5g_new_from_dictionary</td><td class="Q">397</td><td class="Q">1</td><td><a href="report-610b56.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-610b56.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_hybrid_pref_result</td><td class="Q">1084</td><td class="Q">1</td><td><a href="report-65a75b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-65a75b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_wcdma_subsys_state_info_result</td><td class="Q">2003</td><td class="Q">1</td><td><a href="report-65ba28.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-65ba28.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-gsm.c</td><td class="DESC">mm_cell_info_gsm_new_from_dictionary</td><td class="Q">326</td><td class="Q">1</td><td><a href="report-6612c2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6612c2.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nw_subsys_eri_result</td><td class="Q">1678</td><td class="Q">1</td><td><a href="report-664cce.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-664cce.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_version_info_new</td><td class="Q">304</td><td class="Q">1</td><td><a href="report-671d87.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-671d87.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-port-probe.c</td><td class="DESC">serial_probe_at_product_result_processor</td><td class="Q">930</td><td class="Q">1</td><td><a href="report-677793.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-677793.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_mdn_new</td><td class="Q">768</td><td class="Q">1</td><td><a href="report-67f236.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-67f236.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-gsm.c</td><td class="DESC">mm_cell_info_gsm_new_from_dictionary</td><td class="Q">329</td><td class="Q">1</td><td><a href="report-6922bf.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6922bf.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-lte.c</td><td class="DESC">mm_cell_info_lte_new_from_dictionary</td><td class="Q">365</td><td class="Q">1</td><td><a href="report-697668.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-697668.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-common-helpers.c</td><td class="DESC">mm_common_ports_garray_to_variant</td><td class="Q">787</td><td class="Q">1</td><td><a href="report-6b0ed0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6b0ed0.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-gsm.c</td><td class="DESC">mm_cell_info_gsm_new_from_dictionary</td><td class="Q">330</td><td class="Q">1</td><td><a href="report-6f68de.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6f68de.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_roam_pref_new</td><td class="Q">830</td><td class="Q">1</td><td><a href="report-73433b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-73433b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-cdma.c</td><td class="DESC">mm_cell_info_cdma_new_from_dictionary</td><td class="Q">264</td><td class="Q">1</td><td><a href="report-7c4a23.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7c4a23.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-gsm.c</td><td class="DESC">mm_cell_info_gsm_new_from_dictionary</td><td class="Q">327</td><td class="Q">1</td><td><a href="report-7c51b5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7c51b5.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>plugins/huawei/tests/test-modem-helpers-huawei.c</td><td class="DESC">test_dhcp</td><td class="Q">194</td><td class="Q">1</td><td><a href="report-7d2a15.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7d2a15.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_mode_pref_result</td><td class="Q">996</td><td class="Q">1</td><td><a href="report-81cce1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-81cce1.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_ipv6_enabled_result</td><td class="Q">1123</td><td class="Q">1</td><td><a href="report-821717.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-821717.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">454</td><td class="Q">1</td><td><a href="report-845a80.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-845a80.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_cdma_status_new</td><td class="Q">440</td><td class="Q">1</td><td><a href="report-84c914.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-84c914.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-gsm.c</td><td class="DESC">mm_cell_info_gsm_new_from_dictionary</td><td class="Q">328</td><td class="Q">1</td><td><a href="report-877a2e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-877a2e.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-port-probe.c</td><td class="DESC">serial_probe_at_xmm_result_processor</td><td class="Q">898</td><td class="Q">1</td><td><a href="report-878c45.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-878c45.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_pilot_sets_result</td><td class="Q">673</td><td class="Q">1</td><td><a href="report-89bd4e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-89bd4e.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-tdscdma.c</td><td class="DESC">mm_cell_info_tdscdma_new_from_dictionary</td><td class="Q">356</td><td class="Q">1</td><td><a href="report-89c43d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-89c43d.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_ipv6_enabled_new</td><td class="Q">1140</td><td class="Q">1</td><td><a href="report-8a6b01.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8a6b01.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-lte.c</td><td class="DESC">mm_cell_info_lte_new_from_dictionary</td><td class="Q">367</td><td class="Q">1</td><td><a href="report-8b8091.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8b8091.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_mode_pref_new</td><td class="Q">971</td><td class="Q">1</td><td><a href="report-8bcb1d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8bcb1d.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_roam_pref_result</td><td class="Q">861</td><td class="Q">1</td><td><a href="report-8cd29f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8cd29f.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-nr5g.c</td><td class="DESC">mm_cell_info_nr5g_new_from_dictionary</td><td class="Q">399</td><td class="Q">1</td><td><a href="report-8eb479.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8eb479.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-tdscdma.c</td><td class="DESC">mm_cell_info_tdscdma_new_from_dictionary</td><td class="Q">358</td><td class="Q">1</td><td><a href="report-8ebdb1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8ebdb1.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_gsm_subsys_state_info_new</td><td class="Q">2032</td><td class="Q">1</td><td><a href="report-8fdc9b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8fdc9b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_mode_pref_result</td><td class="Q">955</td><td class="Q">1</td><td><a href="report-90cf86.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-90cf86.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-tdscdma.c</td><td class="DESC">mm_cell_info_tdscdma_new_from_dictionary</td><td class="Q">363</td><td class="Q">1</td><td><a href="report-9278c6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9278c6.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-tdscdma.c</td><td class="DESC">mm_cell_info_tdscdma_new_from_dictionary</td><td class="Q">364</td><td class="Q">1</td><td><a href="report-945520.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-945520.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">462</td><td class="Q">1</td><td><a href="report-94625d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-94625d.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nw_subsys_modem_snapshot_cdma_new</td><td class="Q">1563</td><td class="Q">1</td><td><a href="report-95c838.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-95c838.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_control_new</td><td class="Q">411</td><td class="Q">1</td><td><a href="report-96c1e5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-96c1e5.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-netlink.c</td><td class="DESC">netlink_message_header</td><td class="Q">70</td><td class="Q">1</td><td><a href="report-97c83b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-97c83b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_hybrid_pref_new</td><td class="Q">1067</td><td class="Q">1</td><td><a href="report-9e25b0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9e25b0.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_sw_version_result</td><td class="Q">526</td><td class="Q">1</td><td><a href="report-9e49d6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9e49d6.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">452</td><td class="Q">1</td><td><a href="report-9f114c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9f114c.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_mdn_result</td><td class="Q">788</td><td class="Q">1</td><td><a href="report-a2ad29.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a2ad29.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">453</td><td class="Q">1</td><td><a href="report-a49c29.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a49c29.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_hybrid_pref_new</td><td class="Q">1008</td><td class="Q">1</td><td><a href="report-aa0f0d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-aa0f0d.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_sw_version_new</td><td class="Q">511</td><td class="Q">1</td><td><a href="report-ab4b2e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ab4b2e.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-tdscdma.c</td><td class="DESC">mm_cell_info_tdscdma_new_from_dictionary</td><td class="Q">360</td><td class="Q">1</td><td><a href="report-abceec.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-abceec.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-sms-part-cdma.c</td><td class="DESC">read_bearer_data</td><td class="Q">969</td><td class="Q">1</td><td><a href="report-abeaca.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-abeaca.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-common-helpers.c</td><td class="DESC">mm_common_mode_combinations_garray_to_variant</td><td class="Q">1011</td><td class="Q">1</td><td><a href="report-ac4277.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ac4277.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nw_subsys_eri_new</td><td class="Q">1646</td><td class="Q">1</td><td><a href="report-ac4a7e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ac4a7e.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">456</td><td class="Q">1</td><td><a href="report-ac5adf.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ac5adf.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-netlink.c</td><td class="DESC">netlink_message_cb</td><td class="Q">355</td><td class="Q">1</td><td><a href="report-acefb9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-acefb9.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_mode_pref_new</td><td class="Q">981</td><td class="Q">1</td><td><a href="report-adf02a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-adf02a.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_hdr_rev_pref_new</td><td class="Q">1240</td><td class="Q">1</td><td><a href="report-ae7145.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ae7145.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-modem-oma.c</td><td class="DESC">mm_modem_oma_peek_pending_network_initiated_sessions</td><td class="Q">537</td><td class="Q">1</td><td><a href="report-b02360.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b02360.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_mode_pref_new</td><td class="Q">924</td><td class="Q">1</td><td><a href="report-b265a8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b265a8.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-base-modem.c</td><td class="DESC">mm_base_modem_get_port_infos</td><td class="Q">1140</td><td class="Q">1</td><td><a href="report-b3e269.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b3e269.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-netlink.c</td><td class="DESC">netlink_message_cb</td><td class="Q">356</td><td class="Q">1</td><td><a href="report-b5e27d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b5e27d.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_ipv6_enabled_new</td><td class="Q">1155</td><td class="Q">1</td><td><a href="report-b666db.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b666db.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-tdscdma.c</td><td class="DESC">mm_cell_info_tdscdma_new_from_dictionary</td><td class="Q">361</td><td class="Q">1</td><td><a href="report-b6b998.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b6b998.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_esn_result</td><td class="Q">378</td><td class="Q">1</td><td><a href="report-b6ff17.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b6ff17.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_hdr_rev_pref_result</td><td class="Q">1210</td><td class="Q">1</td><td><a href="report-b75cf6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b75cf6.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_roam_pref_new</td><td class="Q">882</td><td class="Q">1</td><td><a href="report-b7ad02.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-b7ad02.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info.c</td><td class="DESC">mm_cell_info_new_from_dictionary</td><td class="Q">197</td><td class="Q">1</td><td><a href="report-bb40b5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bb40b5.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/logs.c</td><td class="DESC">qcdm_log_item_evdo_pilot_sets_v2_new</td><td class="Q">98</td><td class="Q">1</td><td><a href="report-bbe1ba.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bbe1ba.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-nr5g.c</td><td class="DESC">mm_cell_info_nr5g_new_from_dictionary</td><td class="Q">392</td><td class="Q">1</td><td><a href="report-bd59b3.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bd59b3.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_pilot_sets_result_get_pilot</td><td class="Q">754</td><td class="Q">1</td><td><a href="report-bec079.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bec079.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_zte_subsys_status_new</td><td class="Q">1524</td><td class="Q">1</td><td><a href="report-c2fbac.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c2fbac.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-cdma.c</td><td class="DESC">mm_cell_info_cdma_new_from_dictionary</td><td class="Q">266</td><td class="Q">1</td><td><a href="report-c415e9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c415e9.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/tests/test-modem-helpers-qmi.c</td><td class="DESC">test_supported_modes_expected</td><td class="Q">78</td><td class="Q">1</td><td><a href="report-c4494d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c4494d.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_mdn_new</td><td class="Q">778</td><td class="Q">1</td><td><a href="report-c46a10.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c46a10.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_hdr_rev_pref_new</td><td class="Q">1255</td><td class="Q">1</td><td><a href="report-c561a9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c561a9.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-port-probe.c</td><td class="DESC">serial_probe_at_icera_result_processor</td><td class="Q">914</td><td class="Q">1</td><td><a href="report-c6adf0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c6adf0.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_roam_pref_new</td><td class="Q">840</td><td class="Q">1</td><td><a href="report-c92bb5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c92bb5.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_hdr_subsys_state_info_result</td><td class="Q">1370</td><td class="Q">1</td><td><a href="report-c983b2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c983b2.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_ext_logmask_new</td><td class="Q">1401</td><td class="Q">1</td><td><a href="report-cbfdbd.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cbfdbd.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">459</td><td class="Q">1</td><td><a href="report-cd969b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cd969b.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_mode_pref_result</td><td class="Q">944</td><td class="Q">1</td><td><a href="report-cf56c5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cf56c5.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-nr5g.c</td><td class="DESC">mm_cell_info_nr5g_new_from_dictionary</td><td class="Q">394</td><td class="Q">1</td><td><a href="report-d2858c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d2858c.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_event_report_new</td><td class="Q">1495</td><td class="Q">1</td><td><a href="report-d32b23.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d32b23.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-tdscdma.c</td><td class="DESC">mm_cell_info_tdscdma_new_from_dictionary</td><td class="Q">357</td><td class="Q">1</td><td><a href="report-d3faf1.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d3faf1.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">check_log_config_respose</td><td class="Q">1778</td><td class="Q">1</td><td><a href="report-d53ae6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d53ae6.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_mdn_result</td><td class="Q">800</td><td class="Q">1</td><td><a href="report-db2986.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-db2986.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_esn_new</td><td class="Q">363</td><td class="Q">1</td><td><a href="report-dc17ae.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-dc17ae.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-gsm.c</td><td class="DESC">mm_cell_info_gsm_new_from_dictionary</td><td class="Q">331</td><td class="Q">1</td><td><a href="report-e34f61.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e34f61.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_zte_subsys_status_result</td><td class="Q">1541</td><td class="Q">1</td><td><a href="report-e66691.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e66691.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_cm_subsys_state_info_result</td><td class="Q">1298</td><td class="Q">1</td><td><a href="report-e8ef11.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e8ef11.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info.c</td><td class="DESC">mm_cell_info_new_from_dictionary</td><td class="Q">161</td><td class="Q">1</td><td><a href="report-e95175.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e95175.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-port-probe.c</td><td class="DESC">serial_probe_at_vendor_result_processor</td><td class="Q">945</td><td class="Q">1</td><td><a href="report-ea67ea.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ea67ea.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_ext_logmask_result</td><td class="Q">1436</td><td class="Q">1</td><td><a href="report-ee565a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ee565a.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-nr5g.c</td><td class="DESC">mm_cell_info_nr5g_new_from_dictionary</td><td class="Q">398</td><td class="Q">1</td><td><a href="report-f035ae.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f035ae.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/logs.c</td><td class="DESC">qcdm_log_item_evdo_pilot_sets_v2_new</td><td class="Q">90</td><td class="Q">1</td><td><a href="report-f0b273.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f0b273.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>plugins/huawei/tests/test-modem-helpers-huawei.c</td><td class="DESC">test_dhcp</td><td class="Q">192</td><td class="Q">1</td><td><a href="report-f0bfe8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f0bfe8.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">458</td><td class="Q">1</td><td><a href="report-f10025.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f10025.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-umts.c</td><td class="DESC">mm_cell_info_umts_new_from_dictionary</td><td class="Q">460</td><td class="Q">1</td><td><a href="report-f104c8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f104c8.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-modem-location.c</td><td class="DESC">mm_modem_location_inject_assistance_data</td><td class="Q">438</td><td class="Q">1</td><td><a href="report-f120c5.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f120c5.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>src/mm-port-serial-qcdm.c</td><td class="DESC">parse_unsolicited</td><td class="Q">323</td><td class="Q">1</td><td><a href="report-f1989c.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f1989c.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_get_mode_pref_new</td><td class="Q">934</td><td class="Q">1</td><td><a href="report-f24c4e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f24c4e.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>plugins/huawei/tests/test-modem-helpers-huawei.c</td><td class="DESC">test_dhcp</td><td class="Q">193</td><td class="Q">1</td><td><a href="report-f27400.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f27400.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-cell-info-lte.c</td><td class="DESC">mm_cell_info_lte_new_from_dictionary</td><td class="Q">359</td><td class="Q">1</td><td><a href="report-f40c1d.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f40c1d.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libmm-glib/mm-common-helpers.c</td><td class="DESC">mm_common_oma_pending_network_initiated_sessions_garray_to_variant</td><td class="Q">1256</td><td class="Q">1</td><td><a href="report-f61900.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f61900.html" -->
+</tr>
+<tr class="bt_logic_error_cast_from_non-struct_type_to_struct_type"><td class="DESC">Logic error</td><td class="DESC">Cast from non-struct type to struct type</td><td>libqcdm/src/commands.c</td><td class="DESC">qcdm_cmd_nv_set_hybrid_pref_new</td><td class="Q">1052</td><td class="Q">1</td><td><a href="report-f6ff61.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f6ff61.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>src/mm-charsets.c</td><td class="DESC">mm_modem_charsets_init</td><td class="Q">957</td><td class="Q">1</td><td><a href="report-017a9a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-017a9a.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>libqcdm/tests/test-qcdm-com.c</td><td class="DESC">test_com_ext_logmask</td><td class="Q">1526</td><td class="Q">1</td><td><a href="report-098335.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-098335.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>plugins/ublox/mm-modem-helpers-ublox.c</td><td class="DESC">mm_ublox_get_supported_bands</td><td class="Q">1036</td><td class="Q">1</td><td><a href="report-1a8ef9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1a8ef9.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>src/mm-bearer-mbim.c</td><td class="DESC">ensure_disconnected_ready</td><td class="Q">700</td><td class="Q">1</td><td><a href="report-41cc54.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-41cc54.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>libqcdm/tests/test-qcdm-com.c</td><td class="DESC">test_com_event_report</td><td class="Q">1571</td><td class="Q">1</td><td><a href="report-490eb9.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-490eb9.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>src/mm-sms-part-3gpp.c</td><td class="DESC">util_split_text_utf16_or_ucs2</td><td class="Q">1134</td><td class="Q">1</td><td><a href="report-695d7b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-695d7b.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>libqcdm/tests/test-qcdm-com.c</td><td class="DESC">test_com_log_config</td><td class="Q">1662</td><td class="Q">1</td><td><a href="report-881e83.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-881e83.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>plugins/cinterion/mm-broadband-modem-cinterion.c</td><td class="DESC">common_load_initial_eps_step</td><td class="Q">1643</td><td class="Q">1</td><td><a href="report-c6ba1a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-c6ba1a.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>libqcdm/tests/test-qcdm-com.c</td><td class="DESC">test_com_event_report</td><td class="Q">1561</td><td class="Q">1</td><td><a href="report-dc81b2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-dc81b2.html" -->
+</tr>
+<tr class="bt_unused_code_dead_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead assignment</td><td>src/mm-sms-part-cdma.c</td><td class="DESC">read_address</td><td class="Q">585</td><td class="Q">1</td><td><a href="report-f90f65.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f90f65.html" -->
+</tr>
+<tr class="bt_unused_code_dead_nested_assignment"><td class="DESC">Unused code</td><td class="DESC">Dead nested assignment</td><td>docs/reference/libmm-glib/libmm-glib-scan.c</td><td class="DESC">output_object_signal</td><td class="Q">526</td><td class="Q">1</td><td><a href="report-1c4578.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1c4578.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>src/mm-plugin-manager.c</td><td class="DESC">load_shared</td><td class="Q">1781</td><td class="Q">23</td><td><a href="report-1cdc9a.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-1cdc9a.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cli/mmcli-output.c</td><td class="DESC">dump_output_json</td><td class="Q">1586</td><td class="Q">13</td><td><a href="report-43b056.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-43b056.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>src/mm-broadband-modem-mbim.c</td><td class="DESC">basic_connect_notification_register_state</td><td class="Q">4495</td><td class="Q">13</td><td><a href="report-6743cd.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6743cd.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>src/mm-shared-qmi.c</td><td class="DESC">find_requested_carrier_config</td><td class="Q">2613</td><td class="Q">28</td><td><a href="report-6eb4a8.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6eb4a8.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>src/mm-shared-qmi.c</td><td class="DESC">setup_carrier_config_step</td><td class="Q">2667</td><td class="Q">18</td><td><a href="report-730681.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-730681.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>plugins/cinterion/mm-broadband-bearer-cinterion.c</td><td class="DESC">disconnect_connection_status_ready</td><td class="Q">487</td><td class="Q">9</td><td><a href="report-75d3b6.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-75d3b6.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>plugins/huawei/mm-broadband-modem-huawei.c</td><td class="DESC">prefmode_load_current_modes_ready</td><td class="Q">1208</td><td class="Q">6</td><td><a href="report-7c9b45.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7c9b45.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cli/mmcli-output.c</td><td class="DESC">dump_output_json</td><td class="Q">1578</td><td class="Q">11</td><td><a href="report-9594d0.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-9594d0.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cli/mmcli-modem-3gpp-profile-manager.c</td><td class="DESC">get_modem_ready</td><td class="Q">325</td><td class="Q">30</td><td><a href="report-d09aac.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-d09aac.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>plugins/huawei/mm-broadband-modem-huawei.c</td><td class="DESC">syscfg_load_current_modes_ready</td><td class="Q">1236</td><td class="Q">6</td><td><a href="report-e1bda7.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e1bda7.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>plugins/huawei/mm-broadband-modem-huawei.c</td><td class="DESC">syscfgex_load_current_modes_ready</td><td class="Q">1263</td><td class="Q">6</td><td><a href="report-f15010.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f15010.html" -->
+</tr>
+<tr class="bt_logic_error_dereference_of_null_pointer"><td class="DESC">Logic error</td><td class="DESC">Dereference of null pointer</td><td>cli/mmcli-modem-3gpp-profile-manager.c</td><td class="DESC">mmcli_modem_3gpp_profile_manager_run_synchronous</td><td class="Q">424</td><td class="Q">31</td><td><a href="report-f6fb1b.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f6fb1b.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>libmm-glib/mm-common-helpers.c</td><td class="DESC">mm_utils_hexstr2bin</td><td class="Q">1849</td><td class="Q">12</td><td><a href="report-01902f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-01902f.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>plugins/wavecom/mm-broadband-modem-wavecom.c</td><td class="DESC">current_ms_class_ready</td><td class="Q">375</td><td class="Q">14</td><td><a href="report-bda109.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-bda109.html" -->
+</tr>
+<tr class="bt_memory_error_memory_leak"><td class="DESC">Memory error</td><td class="DESC">Memory leak</td><td>plugins/wavecom/mm-broadband-modem-wavecom.c</td><td class="DESC">wwsm_read_ready</td><td class="Q">308</td><td class="Q">11</td><td><a href="report-e2b07f.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-e2b07f.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>src/mm-sms-part-cdma.c</td><td class="DESC">read_bits</td><td class="Q">255</td><td class="Q">33</td><td><a href="report-459d93.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-459d93.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>src/mm-plugin.c</td><td class="DESC">is_virtual_port</td><td class="Q">201</td><td class="Q">13</td><td><a href="report-66765e.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-66765e.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>src/mm-sms-part-3gpp.c</td><td class="DESC">mm_sms_part_3gpp_get_submit_pdu</td><td class="Q">926</td><td class="Q">22</td><td><a href="report-7df3af.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-7df3af.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>src/tests/test-sms-part-3gpp.c</td><td class="DESC">common_test_text_split</td><td class="Q">730</td><td class="Q">20</td><td><a href="report-8cba03.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-8cba03.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound access</td><td>plugins/mbm/mm-modem-helpers-mbm.c</td><td class="DESC">mm_mbm_parse_e2ipcfg_response</td><td class="Q">136</td><td class="Q">34</td><td><a href="report-ce28db.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ce28db.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_array_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound array access</td><td>src/mm-sms-part-cdma.c</td><td class="DESC">read_teleservice_id</td><td class="Q">355</td><td class="Q">23</td><td><a href="report-6d2059.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-6d2059.html" -->
+</tr>
+<tr class="bt_logic_error_out-of-bound_array_access"><td class="DESC">Logic error</td><td class="DESC">Out-of-bound array access</td><td>src/mm-sms-part-cdma.c</td><td class="DESC">read_service_category</td><td class="Q">396</td><td class="Q">23</td><td><a href="report-f12795.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-f12795.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>src/mm-broadband-modem-mbim.c</td><td class="DESC">modem_load_model</td><td class="Q">767</td><td class="Q">1</td><td><a href="report-04c005.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-04c005.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>plugins/huawei/mm-modem-helpers-huawei.c</td><td class="DESC">mm_huawei_parse_ndisstatqry_response</td><td class="Q">142</td><td class="Q">1</td><td><a href="report-2aa1de.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-2aa1de.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>plugins/ublox/mm-modem-helpers-ublox.c</td><td class="DESC">mm_ublox_parse_upincnt_response</td><td class="Q">90</td><td class="Q">1</td><td><a href="report-a313b4.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-a313b4.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libmm-glib/mm-location-gps-raw.c</td><td class="DESC">mm_location_gps_raw_add_trace</td><td class="Q">210</td><td class="Q">1</td><td><a href="report-cc1070.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-cc1070.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libmm-glib/mm-cdma-manual-activation-properties.c</td><td class="DESC">mm_cdma_manual_activation_properties_set_prl_bytearray</td><td class="Q">576</td><td class="Q">1</td><td><a href="report-fec760.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-fec760.html" -->
+</tr>
+<tr class="bt_unused_code_unreachable_code"><td class="DESC">Unused code</td><td class="DESC">Unreachable code</td><td>libmm-glib/mm-cdma-manual-activation-properties.c</td><td class="DESC">mm_cdma_manual_activation_properties_get_dictionary</td><td class="Q">594</td><td class="Q">1</td><td><a href="report-ffa389.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-ffa389.html" -->
+</tr>
+<tr class="bt_logic_error_use_of_identical_expressions"><td class="DESC">Logic error</td><td class="DESC">Use of identical expressions</td><td>libqcdm/src/com.c</td><td class="DESC">qcdm_port_setup</td><td class="Q">46</td><td class="Q">1</td><td><a href="report-0aa0ec.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-0aa0ec.html" -->
+</tr>
+<tr class="bt_unix_api_malloc_size_overflow"><td class="DESC">Unix API</td><td class="DESC">malloc() size overflow</td><td>libqcdm/src/commands.c</td><td class="DESC">log_config_get_set_result</td><td class="Q">1879</td><td class="Q">1</td><td><a href="report-3322a2.html#EndPath">View Report</a></td>
+<!-- REPORTBUG id="report-3322a2.html" -->
+</tr>
+</tbody>
+</table>
+
+</body></html>
